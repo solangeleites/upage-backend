@@ -6,7 +6,7 @@ import formRoutes from '../routes/form';
 
 
 export class Server {
-  app: Express;
+  app: Express;  
 
   constructor() {
     this.app = express();

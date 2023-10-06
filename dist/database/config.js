@@ -16,7 +16,11 @@ exports.conectarDB = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const conectarDB = () => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        yield mongoose_1.default.connect('mongodb+srv://upage:ms4V1BqyoED6YZor@upage.2qmfm1x.mongodb.net/');
+        const DBURL = process.env.DB_URL;
+        if (!DBURL) {
+            throw new Error('No se encontró la URL de los .env');
+        }
+        yield mongoose_1.default.connect(DBURL);
         console.log('Base de datos online');
     }
     catch (error) {
