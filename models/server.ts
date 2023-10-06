@@ -2,6 +2,9 @@ import express, { Express } from 'express';
 
 import { conectarDB } from '../database/config';
 
+import formRoutes from '../routes/form';
+
+
 export class Server {
   app: Express;
 
@@ -9,6 +12,7 @@ export class Server {
     this.app = express();
     this.conexionDB();
     this.middlware();
+    this.routes();    
   }
 
   async conexionDB(): Promise<void> {
@@ -16,6 +20,9 @@ export class Server {
   }
   middlware(): void {
     this.app.use(express.json());
+  }
+  routes(): void {
+    this.app.use('/form', formRoutes);
   }
 
   listen(): void {
